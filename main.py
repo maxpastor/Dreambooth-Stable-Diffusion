@@ -474,6 +474,7 @@ class CUDACallback(Callback):
     def on_train_epoch_end(self, trainer, pl_module):
         torch.cuda.synchronize(trainer.root_gpu)
         max_memory = torch.cuda.max_memory_allocated(trainer.root_gpu) / 2 ** 20
+        print("Max Memory:", max_memory)
         epoch_time = time.time() - self.start_time
 
         try:
